@@ -1,0 +1,27 @@
+// Home
+// ===
+
+
+
+
+// Home: Promo
+// ---
+
+.t-home__promo {
+    padding: $v-space 0;
+
+    text-align: center;
+
+    .banner-message {
+        font-family: $serif;
+        font-style: italic;
+    }
+}
+
+
+// Home: Content
+// ---
+
+.t-home__content {
+    padding: 0 $small-h-space;
+}
