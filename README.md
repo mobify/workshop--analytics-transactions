@@ -113,4 +113,4 @@ When you're ready to continue to Step 2, run the following command:
 git reset --hard HEAD && git clean -df && git checkout step-2-populate-view
 ```
 
-Then, follow the directions in the [README](TODO) for the Step 2 branch.
+Then, follow the directions in the [README](https://github.com/mobify/workshop--analytics-transactions/blob/step-2-populate-view/README.md) for the Step 2 branch.
