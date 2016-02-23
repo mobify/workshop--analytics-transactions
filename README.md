@@ -41,13 +41,13 @@
     ```
 
 This will select relevant information from the web order confirmation page.
-    a. The page title  
-    b. Each sold item, along with the image, name, sku, and price for that item. 
-    c. A unique transaction number
-    d. The summary of the transaction including subtotal, tax, and total and each of their respective amounts.  
+    * The page title  
+    * Each sold item, along with the image, name, sku, and price for that item. 
+    * A unique transaction number
+    * The summary of the transaction including subtotal, tax, and total and each of their respective amounts.  
 
 
-2. Inside of the contentBlock paste the following:
+2. Open up `app/pages/order-confirmation/template.dust`, inside of the `{<contentBlock} add the following:
 
     ```html
     <h2 class="t-order-confirmation__title">{title}</h2>
