@@ -93,7 +93,7 @@ run `grunt preview`
 
 Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
 
-<img src="" height="400"/>
+<img src="https://raw.githubusercontent.com/mobify/workshop--analytics-transactions/step-2-populate-view/static/img/unstyled-order-confirmation.png?token=AKTX6iWrF7MIYx6LgwR3p7eksrAtGKg3ks5W1ib8wA%3D%3D" height="400"/>
 
 Currently we have all of our content, but it is unstyled, let's style in quickly.
 
@@ -181,7 +181,7 @@ run `grunt preview`
 
 Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
 
-<img src="" height="400"/>
+<img src="https://raw.githubusercontent.com/mobify/workshop--analytics-transactions/step-2-populate-view/static/img/styled-confirmation-page.png?token=AKTX6ulyMJIYbXRH_WvVPFJ3-K3IhhgEks5W1ibnwA%3D%3D" height="400"/>
 
 Great, now everythig is styled and we're ready to add our analytics to the page!
 
@@ -193,4 +193,4 @@ When you're ready to continue to Step 3, run the following command:
 git reset --hard HEAD && git clean -df && git checkout step-3-add-google-analytics
 ```
 
-Then, follow the directions in the [README](TODO) for the Step 3 branch.
+Then, follow the directions in the [README](https://github.com/mobify/workshop--analytics-transactions/blob/step-3-add-google-analytics/README.md) for the Step 3 branch.
