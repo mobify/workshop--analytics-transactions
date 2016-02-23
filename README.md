@@ -1,99 +1,91 @@
-#Step 1: Generate a View
-
-The Adaptive.js Generator has a view generator that sets up a new view for your project. The view generator creates:
-* a view file,
-* a Dust template,
-* a view-script file, and
-* a view test file.
-
-### Install NPM Modules
-
-1. In your `workshop--analytics-transactions` project folder, enter the following command to install NPM modules:
-
-    ```
-    npm install
-    ```
+#Step 2: Populate the View
 
 ##Task
 
-###Create a New 'order-confirmation' View
+###Add Content to the Order-Confirmation Page
 
-1. In your `workshop--analytics-transactions` project folder, enter the following command to run the sub-generator with Yeoman:
-
-    ```
-    yo adaptivejs:view
-    ```
-
-2. When the generator prompts you for a name, enter `order-confirmation`.
-3. Select `baseView` as the view to extend.
-
-<img src="https://raw.githubusercontent.com/mobify/workshop--analytics-transactions/step-1-generate-order-confirmation-view/static/img/view-generator.png?token=AKTX6iewrfDWmH-_qEhCBn71P2ufV7cdks5W1evuwA%3D%3D" height="100" />
-
-4. To add the view to the router file, open the file `app/global/router.js` with a text editor.
-5. In `router.js` file, in the `define` dependencies array code block, add the new `pages/order-confirmation/view` path for the new view file. Remember to append a comma the previous `page/home/view` last entry.
+1. In `app/pages/order-confirmation/view.js` file replace the body key with the following:
 
     ```javascript
-    'pages/pdp/view',
-    'pages/order-confirmation/view'
-
+    title: function() {
+        return $('h1').text();
+    },
+    items: function() {
+        return $('#order-confirmation tr').filter(function() {
+            var $row = $(this);
+            return !$row.hasClass('subtotal') && !$row.hasClass('tax') && !$row.hasClass('total');
+        }).map(function() {
+            var $row = $(this);
+            return {
+                image: $row.find('td:nth-of-type(1) img').attr('x-src'),
+                name: $row.find('td:nth-of-type(2)  p:first').text(),
+                price: $row.find('td:nth-of-type(3)').text(),
+                sku: $row.find('.sku').text()
+            };
+        });
+    },
+    transactionNumber: function() {
+        return $('#transaction-number').text();
+    },
+    summary: function() {
+        return $('#order-confirmation tr').filter(function() {
+            return this.className;
+        }).map(function() {
+            var $row = $(this);
+            return {
+                name: $row.find('td:nth-of-type(2)').text(),
+                amount: $row.find('td:last-of-type').text()
+            };
+        });
+    }
     ```
 
-6. In the function definition, list the view `OrderConfirmation` as an argument after the `PDP` argument. Remember to append the comma after `PDP`.
+This will select relevant information from the web order confirmation page.
+    a. The page title  
+    b. Each sold item, along with the image, name, sku, and price for that item. 
+    c. A unique transaction number
+    d. The summary of the transaction including subtotal, tax, and total and each of their respective amounts.  
 
-    ```javascript
-    function($, Router, Home, Category, PDP, OrderConfirmation) {
+
+2. Inside of the contentBlock paste the following:
+
+    ```html
+    <h2 class="t-order-confirmation__title">{title}</h2>
+    <p class="t-order-confirmation__transaction-number">{transactionNumber}</p>
     ```
+This will display the transaction number and page title.
 
-
-7. Add the OrderConfirmation route to the router by appending `.add(Router.selectorMatch('body.confirmation'), OrderConfirmation);` after the PDP route. Remeber to remove the semicolon after PDP:
-
-    ```javascript
-    router
-        .add(Router.selectorMatch('body.home'), Home)
-        .add(Router.selectorMatch('body.category'), Category)
-        .add(Router.selectorMatch('body.pdp'), PDP)
-        .add(Router.selectorMatch('body.confirmation'), OrderConfirmation);
-    ```
-
-    The `.add()` function creates a new route that loads the given view upon the return of a Boolean value from the function. The `Router.selectorMatch()` function returns true when an element that matches the selector exists on the current page.
-
-8. Save the `router.js` file with these changes in your editor.
-
-    Your `router.js` file should look like this:
-
-    ```javascript
-    define([
-    '$',
-    'adaptivejs/router',
-    'pages/home/view',
-    'pages/category/view',
-    'pages/pdp/view',
-    'pages/order-confirmation/view'
-    ],
-    function($, Router, Home, Category, PDP, ) {
-        var router = new Router();
-
-        router
-            .add(Router.selectorMatch('body.home'), Home)
-            .add(Router.selectorMatch('body.category'), Category)
-            .add(Router.selectorMatch('body.pdp'), PDP)
-            .add(function() {return true;}, Home);
-
-        return router;
-    });
-    ```
-
-9. inside `app/ui.js` append `'pages/order-confirmation/ui'` inside the require array. remember to add a comma after `'pages/pdp/view'`.
+3. Below that add the following:  
     
-    ```javascript
-    require([
-        'global/ui',
-        'pages/home/ui',
-        'pages/category/ui',
-        'pages/pdp/ui',
-        'pages/order-confirmation/ui'
-    ],
+    ```html
+    {#items}
+        <div class="c-item">
+            <div class="c-item__image">
+                <img src="{image}" />
+            </div>
+            <div class="c-item__description">
+                <span class="c-item__name">{name}</span>
+                <span class="c-item__price">{price}</span>
+                <span class="c-item__sku">{sku}</span>
+            </div>
+        </div>
+    {/items}
+
+    <div class="t-order-confirmation__summary">
+        {#summary}
+            <div class="t-order-confirmation__summary-item">
+                <div class="t-order-confirmation__summary-item-name">
+                    {name}
+                </div>
+                <div class="t-order-confirmation__summary-item-amount">
+                    {amount}
+                </div>
+            </div>
+        {/summary}
+    </div>
     ```
+
+This will loop through each of the items and display them and loop through each of the summary objects for display.
 
 ## Preview the New Page
 
@@ -101,16 +93,104 @@ run `grunt preview`
 
 Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
 
-<img src="https://raw.githubusercontent.com/mobify/workshop--analytics-transactions/step-1-generate-order-confirmation-view/static/img/merlin-empty-page.png?token=AKTX6j-YAtDX5Mq_ya2KyDJo8QhzDKklks5W1evYwA%3D%3D"  height="400"/>
+<img src="" height="400"/>
 
-Currently it only has a header and footer with no content.
+Currently we have all of our content, but it is unstyled, let's style in quickly.
 
-##Continue to Step 2
+## Add Style
 
-When you're ready to continue to Step 2, run the following command:
+3. Let's add some styles just for the items. Inside `app/components/` create a new folder called `item`. Inside the item folder create a new file called `_style.scss`. Inside this file add the following:
+
+    ```scss
+    .c-item {
+        @include clearfix;
+    }
+
+    .c-item__image {
+        float: left;
+        width: 35%;
+    }
+
+    .c-item__description {
+        float: left;
+        width: 65%;
+    }
+
+    .c-item__name {
+        display: block;
+        font-weight: bold;
+    }
+
+    .c-item__price {
+        color: $accent-color;
+        display: block;
+    }
+
+    .c-item__sku {
+        margin-top: $unit;
+        display: block;
+        font-size: 0.7em;
+    }
+    ```
+
+2. Include this style by adding `@import 'components/item/style';` to the bottom of `/app/global/styles/_components.scss`.
+
+3. To add style for the page, go into `app/pages/order-confirmation/` create a new file called _style.scss. Inside that _style.scss add the following:
+
+    ```scss
+    .t-order-confirmation__title {
+        padding: $unit*2;
+        padding-bottom: $unit;
+    }
+
+    .t-order-confirmation__summary {
+        margin: $unit 0;
+        padding: $unit 0;
+        border-top: 1px solid $neutral-30;
+        border-bottom: 1px solid $neutral-30;
+    }
+
+    .t-order-confirmation__summary-item {
+        @include clearfix;
+    }
+
+    .t-order-confirmation__summary-item-name {
+        float: left;
+        width: 75%;
+        padding-right: $unit/2;
+
+        text-align: right;
+    }
+
+    .t-order-confirmation__summary-item-amount {
+        color: $accent-color;
+    }
+
+    .t-order-confirmation__transaction-number {
+        margin-left: $unit*2;
+        padding-bottom: $unit*2;
+        font-size: 0.9em;
+    }
+    ```
+4. At the bottom of `/app/global/styles/_pages.scss` add `@import 'pages/order-confirmation/style';`
+
+
+## Preview the New Page
+
+run `grunt preview`
+
+Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
+
+<img src="" height="400"/>
+
+Great, now everythig is styled and we're ready to add our analytics to the page!
+
+##Continue to Step 3
+
+When you're ready to continue to Step 3, run the following command:
 
 ```
-git reset --hard HEAD && git clean -df && git checkout step-2-populate-view
+git reset --hard HEAD && git clean -df && git checkout step-3-add-google-analytics
 ```
 
-Then, follow the directions in the [README](TODO) for the Step 2 branch.
+Then, follow the directions in the [README](TODO) for the Step 3 branch.
