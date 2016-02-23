@@ -13,7 +13,7 @@ function($, Router, Home, Category, PDP, OrderConfirmation) {
         .add(Router.selectorMatch('body.home'), Home)
         .add(Router.selectorMatch('body.category'), Category)
         .add(Router.selectorMatch('body.pdp'), PDP)
-        .add(function() {return true;}, Home);
+        .add(Router.selectorMatch('body.confirmation'), OrderConfirmation);
 
     return router;
 });
