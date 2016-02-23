@@ -1,9 +1,34 @@
 {>"global/base"/}
 
 {<contentBlock}
-    {!
-        Content for view goes here. If you remove this block, the default is the entire body content.
-    !}
+    <h2 class="t-order-confirmation__title">{title}</h2>
+    <p class="t-order-confirmation__transaction-number">{transactionNumber}</p>
+
+    {#items}
+        <div class="c-item">
+            <div class="c-item__image">
+                <img src="{image}" />
+            </div>
+            <div class="c-item__description">
+                <span class="c-item__name">{name}</span>
+                <span class="c-item__price">{price}</span>
+                <span class="c-item__sku">{sku}</span>
+            </div>
+        </div>
+    {/items}
+
+    <div class="t-order-confirmation__summary">
+        {#summary}
+            <div class="t-order-confirmation__summary-item">
+                <div class="t-order-confirmation__summary-item-name">
+                    {name}
+                </div>
+                <div class="t-order-confirmation__summary-item-amount">
+                    {amount}
+                </div>
+            </div>
+        {/summary}
+    </div>
 {/contentBlock}
 
 {<uiScripts}
