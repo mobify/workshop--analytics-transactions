@@ -27,7 +27,7 @@ The Adaptive.js Generator has a view generator that sets up a new view for your 
 2. When the generator prompts you for a name, enter `order-confirmation`.
 3. Select `baseView` as the view to extend.
 
-    ![View Generator](TODO)
+<a src="https://raw.githubusercontent.com/mobify/workshop--analytics-transactions/step-1-generate-order-confirmation-view/static/img/view-generator.png?token=AKTX6iewrfDWmH-_qEhCBn71P2ufV7cdks5W1evuwA%3D%3D" height="100" />
 
 4. To add the view to the router file, open the file `app/global/router.js` with a text editor.
 5. In `router.js` file, in the `define` dependencies array code block, add the new `pages/order-confirmation/view` path for the new view file. Remember to append a comma the previous `page/home/view` last entry.
@@ -101,7 +101,7 @@ run `grunt preview`
 
 Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
 
-![Merlin Page](TODO)
+<a src="https://raw.githubusercontent.com/mobify/workshop--analytics-transactions/step-1-generate-order-confirmation-view/static/img/merlin-empty-page.png?token=AKTX6j-YAtDX5Mq_ya2KyDJo8QhzDKklks5W1evYwA%3D%3D"  height="400"/>
 
 Currently it only has a header and footer with no content.
 
