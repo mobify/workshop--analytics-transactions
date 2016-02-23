@@ -1,0 +1,21 @@
+{>"global/base"/}
+
+{<contentBlock}
+    {!
+        Content for view goes here. If you remove this block, the default is the entire body content.
+    !}
+{/contentBlock}
+
+{<uiScripts}
+    <script>
+    // Note: Add any JavaScript that should be run on this page into
+    // app/pages/order-confirmation/ui.js
+    (function(require) {
+        require(["global/ui", "pages/order-confirmation/ui"], function(globalUI, orderConfirmationUI) {
+            globalUI();
+            orderConfirmationUI();
+        });
+    })(Adaptive.AMD.require);
+    </script>
+{/uiScripts}
+
