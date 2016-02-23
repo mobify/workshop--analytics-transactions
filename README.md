@@ -41,8 +41,8 @@
     ```
 
 This will select relevant information from the web order confirmation page.
-- The page title  
-- Each sold item, along with the image, name, sku, and price for that item. 
+- The page title
+- Each sold item, along with the image, name, sku, and price for that item.
 - A unique transaction number
 - The summary of the transaction including subtotal, tax, and total and each of their respective amounts.  
 
