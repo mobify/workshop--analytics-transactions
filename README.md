@@ -38,36 +38,36 @@ __In this example we'll be parsing from the DOM__
 
 ###Parse Transaction Information From the DOM
 
-1. Inside of `app/pages/order-confirmation/ui.js` after the initial function, but before the `orderConfirmationUI` function add a new function called `sendTransactionInfo`.
+1. Inside of `app/pages/order-confirmation/ui.js` after the initial function, but before the `orderConfirmationUI` function add a new function called `parseTransactionInfo`.
     ```javascript
-    var sendTransactionInfo = function(){
+    var parseTransactionInfo = function(){
 
-    }
+    };
     ```
 2. We will now invoke that function from inside of the orderConfirmation function. Your `ui.js` file should now look like this:
 
     ```javascript
     define(['$'], function($) {
-        var sendTransactionInfo = function(){
+        var parseTransactionInfo = function(){
 
-        }
+        };
 
         var orderConfirmationUI = function() {
-            sendTransactionInfo();
+            parseTransactionInfo();
         };
 
         return orderConfirmationUI;
     });
     ```
 3. Lets first fetch the transaction id.
-Inside of the `sendTransactionInfo` function add the following:
+Inside of the `parseTransactionInfo` function add the following:
 `var transactionId = $('.t-order-confirmation__transaction-number').text();`
 
 This will get the text inside of the element with class = 't-order-confirmation__transaction-number'. Unfortunately this will result in us getting "Transaction Number: 4321" where we only want the number. Let's append `.replace('Transaction Number: ', '');` to that last line in order to get just the number.
 
 ` var transactionId = $('.t-order-confirmation__transaction-number').text().replace('Transaction Number: ', '');`
 
-4. Of course we want more than just the transaction number, so add the following inside of the `sendTransactionInfo` function as well.
+4. Of course we want more than just the transaction number, so add the following inside of the `parseTransactionInfo` function as well.
 
     ```javascript
     var summary = $('.t-order-confirmation__summary-item').map(function() {
@@ -86,7 +86,7 @@ This will get the text inside of the element with class = 't-order-confirmation_
     ```
 This will get all of the relevent data, we then need to format it correctly in order to be sent and return it. 
 
-5. At the bottom of the `sendTransactionInfo` function add: 
+5. At the bottom of the `parseTransactionInfo` function add: 
     ```javascript
     return {
         transactionID: transactionId,
@@ -103,11 +103,11 @@ This will get all of the relevent data, we then need to format it correctly in o
 
 ###Inspect what is being gathered
 
-1. Inside of the `orderConfirmationUI` function, wrap the call to `sendTransactionInfo` inside of a `console.log();` so that we can see what the output of the function is.  
+1. Inside of the `orderConfirmationUI` function, wrap the call to `parseTransactionInfo` inside of a `console.log();` so that we can see what the output of the function is.  
 
     ```
     var orderConfirmationUI = function() {
-        console.log(sendTransactionInfo());
+        console.log(parseTransactionInfo());
     };
     ```
 
