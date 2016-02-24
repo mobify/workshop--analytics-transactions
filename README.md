@@ -127,4 +127,4 @@ When you're ready to continue to Step 4, run the following command:
 git reset --hard HEAD && git clean -df && git checkout step-4-add-google-analytics
 ```
 
-Then, follow the directions in the [README](TODO) for the Step 3 branch.
+Then, follow the directions in the [README](https://github.com/mobify/workshop--analytics-transactions/blob/step-4-add-google-analytics/README.md) for the Step 3 branch.for the Step 3 branch.
