@@ -42,5 +42,5 @@ That's it! If you'd like to see the final project, run the following command:
 git reset --hard HEAD && git clean -df && git checkout completed-workshop
 ```
 
-Also checkout the completed-project code on github [here](TODO)
+Also checkout the completed-project code on github [here](https://github.com/mobify/workshop--analytics-transactions/tree/completed-project).
 
