@@ -31,8 +31,18 @@ define(['$'], function($) {
     
     };
 
+    var sendTransactionInfo = function() {
+        try {
+            var Transaction = Mobify.analytics.transaction;
+            Transaction.init(Mobify.analytics.ua, 'mobifyTracker');
+            Transaction.send(parseTransactionInfo());
+        } catch(e) {
+            console.log('Failed to send transaction');
+        }
+    };
+
     var orderConfirmationUI = function() {
-        parseTransactionInfo();
+        sendTransactionInfo();
     };
 
     return orderConfirmationUI;
