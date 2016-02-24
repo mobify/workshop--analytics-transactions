@@ -1,130 +1,46 @@
-#Step 3: Add Google Analytics
+#Step 4: Add Google Analytics
 
-## How to Get Data for Transaction Analytics
-Below is a list of techniques in the order of usage preference.
+We track transaction analytics and we use a Transaction tool that is currently built-in to a.js. A file that comes as part of the adaptivejs node_module.
 
-###Using javascript variables that contains transaction data
- 
-Often, the client's site will save transaction data inside a javascript variable so that it can be easily accessed. We should make use of it since it will contain the same data that we need. We can easily figure this out by looking for the client's analytics calls.
-
-###Parsing out client's analytic call
-
-Not ideal but the next best thing. Parsing the client's analytics call will at least ensure that we have the correct data to work with.
-
-A couple of things that should be in consideration when parsing client's analytic call:
-
-- Always check if the script exists
-- Always check if regex matches returns the expected number of parameters
-- Make sure there is no other characters aside from what is expected (ie. spaces, quotes, carriage returns should be stripped out)
-
-###Parsing from the DOM
-
-Totally not ideal but if it comes down to this, it will have to do. 
-
-A couple of things that should be in consideration when parsing from the DOM:
-
-- Always have checks for empty situations
-- Always check if regex matches returns the expected number of parameters
-- Make sure there is no other characters aside from what is expected (ie. '20.00 USD' for Revenue, ' USD' should be stripped out)
-- Don't guess on what to send in transaction analytic and always match how the clients are sending theirs.
-
-Things to take note of:
-- __transactionID__ should be unique from one order to another
-- __sku__ should be unique to each product
-
-__In this example we'll be parsing from the DOM__
-
-##Task
-
-###Parse Transaction Information From the DOM
-
-1. Inside of `app/pages/order-confirmation/ui.js` after the initial function, but before the `orderConfirmationUI` function add a new function called `sendTransactionInfo`.
+1. now lets make a `sendTransactionInfo` function.
     ```javascript
-    var sendTransactionInfo = function(){
-
-    }
+    var sendTransactionInfo = function() {
+        
+    };
     ```
-2. We will now invoke that function from inside of the orderConfirmation function. Your `ui.js` file should now look like this:
+Inside this function we'll put the code to call the Transaction tool and send the data. We'll also send the result of the `parseTransactionInfo` function to `Transaction.send`:
 
     ```javascript
-    define(['$'], function($) {
-        var sendTransactionInfo = function(){
+    var Transaction = Mobify.analytics.transaction;
+    Transaction.init(Mobify.analytics.ua, 'mobifyTracker');
+    Transaction.send(parseTransactionInfo());
+    ```
 
+2. then inside of the  `orderConfirmationUI` function change `parseTransactionInfo();` to `sendTransactionInfo();`
+
+We've done it! The data from this transaction is now successfully being sent to google analytics whenever a user lands on this page.
+
+3. One last thing, we need to make sure that if there are errors in scraping the data or in sending the data it does not break our client's site. We do this by wrapping all of the content inside `sendTransactionInfo` into a try-catch block. Our `sendTransactionInfo` function should now look like this:
+
+    ```javascript
+    var sendTransactionInfo = function() {
+        try {
+            var Transaction = Mobify.analytics.transaction;
+            Transaction.init(Mobify.analytics.ua, 'mobifyTracker');
+            Transaction.send(parseTransactionInfo());
+        } catch(e) {
+            console.log('Failed to send transaction');
         }
-
-        var orderConfirmationUI = function() {
-            sendTransactionInfo();
-        };
-
-        return orderConfirmationUI;
-    });
-    ```
-3. Lets first fetch the transaction id.
-Inside of the `sendTransactionInfo` function add the following:
-`var transactionId = $('.t-order-confirmation__transaction-number').text();`
-
-This will get the text inside of the element with class = 't-order-confirmation__transaction-number'. Unfortunately this will result in us getting "Transaction Number: 4321" where we only want the number. Let's append `.replace('Transaction Number: ', '');` to that last line in order to get just the number.
-
-` var transactionId = $('.t-order-confirmation__transaction-number').text().replace('Transaction Number: ', '');`
-
-4. Of course we want more than just the transaction number, so add the following inside of the `sendTransactionInfo` function as well.
-
-    ```javascript
-    var summary = $('.t-order-confirmation__summary-item').map(function() {
-        var $row = $(this);
-        return $row.find('.t-order-confirmation__summary-item-amount').text().trim();
-    });
-
-    var items = $('.c-item__description').map(function() {
-        var $row = $(this);
-        return {
-            name: $row.find('.c-item__name').text().trim(),
-            price: $row.find('.c-item__price').text().trim().replace('$', ''),
-            sku: $row.find('.c-item__sku').text().replace('SKU: ', '')
-        };
-    }).get();
-    ```
-This will get all of the relevent data, we then need to format it correctly in order to be sent and return it. 
-
-5. At the bottom of the `sendTransactionInfo` function add: 
-    ```javascript
-    return {
-        transactionID: transactionId,
-        affiliation: 'Merlin\'s Potions',
-        transaction: {
-            tax: summary[1],
-            revenue: summary[2],
-            currency: 'USD',
-            shipping: '0'
-        },
-        transactionItems: items
     };
-    ```
+    ```  
 
-###Inspect what is being gathered
+##View the completed project
 
-1. Inside of the `orderConfirmationUI` function, wrap the call to `sendTransactionInfo` inside of a `console.log();` so that we can see what the output of the function is.  
-
-    ```
-    var orderConfirmationUI = function() {
-        console.log(sendTransactionInfo());
-    };
-    ```
-
-__Preview the page:__
-run `grunt preview`
-
-Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. 
-
-Once there open up the developer tools to inspect the page and look inside of the object in the console.
-
-__Great, now our data is formatted and ready to send off to google analytics in step 4!__
-##Continue to Step 4
-
-When you're ready to continue to Step 4, run the following command:
+That's it! If you'd like to see the final project, run the following command:
 
 ```
-git reset --hard HEAD && git clean -df && git checkout step-4-add-google-analytics
+git reset --hard HEAD && git clean -df && git checkout completed-workshop
 ```
 
-Then, follow the directions in the [README](TODO) for the Step 3 branch.
+Also checkout the completed-project code on github [here](TODO)
+
