@@ -1,4 +1,4 @@
-#Step 3: Add Google Analytics
+#Step 3: Parse Data From the DOM
 
 ## How to Get Data for Transaction Analytics
 Below is a list of techniques in the order of usage preference.
@@ -127,4 +127,4 @@ When you're ready to continue to Step 4, run the following command:
 git reset --hard HEAD && git clean -df && git checkout step-4-add-google-analytics
 ```
 
-Then, follow the directions in the [README](https://github.com/mobify/workshop--analytics-transactions/blob/step-4-add-google-analytics/README.md) for the Step 3 branch.for the Step 3 branch.
+Then, follow the directions in the [README](https://github.com/mobify/workshop--analytics-transactions/blob/step-4-add-google-analytics/README.md) for the Step 4 branch.
