@@ -1,6 +1,6 @@
 define(['$'], function($) {
-    var sendTransactionInfo = function() {
-
+    var parseTransactionInfo = function() {
+     
         var transactionId = $('.t-order-confirmation__transaction-number').text().replace('Transaction Number: ', '');
 
         var summary = $('.t-order-confirmation__summary-item').map(function() {
@@ -28,13 +28,13 @@ define(['$'], function($) {
             },
             transactionItems: items
         };
+    
     };
 
     var orderConfirmationUI = function() {
-        var Transaction = Mobify.analytics.transaction;
-        Transaction.init(Mobify.analytics.ua, 'mobifyTracker', true);
-        Transaction.send(sendTransactionInfo());
+        parseTransactionInfo();
     };
 
     return orderConfirmationUI;
 });
+
