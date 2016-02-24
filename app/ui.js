@@ -6,7 +6,8 @@ require([
     'global/ui',
     'pages/home/ui',
     'pages/category/ui',
-    'pages/pdp/ui'
+    'pages/pdp/ui',
+    'pages/order-confirmation/ui'
     // Add additional UI scripts here
 ],
 function(
