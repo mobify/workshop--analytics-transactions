@@ -1,13 +1,15 @@
 #Step 3: Parse Data From the DOM
 
 ## How to Get Data for Transaction Analytics
-Below is a list of techniques in the order of usage preference.
+__Below is a list of techniques in the order of usage preference.__
 
-###Using javascript variables that contains transaction data
+### 1. Using javascript variables that contain transaction data
  
 Often, the client's site will save transaction data inside a javascript variable so that it can be easily accessed. We should make use of it since it will contain the same data that we need. We can easily figure this out by looking for the client's analytics calls.
 
-###Parsing out client's analytic call
+__Unfortunately Merlin's potions does not have this data stored in global variables__
+
+### 2. Parsing out client's analytic call
 
 Not ideal but the next best thing. Parsing the client's analytics call will at least ensure that we have the correct data to work with.
 
@@ -17,7 +19,9 @@ A couple of things that should be in consideration when parsing client's analyti
 - Always check if regex matches returns the expected number of parameters
 - Make sure there is no other characters aside from what is expected (ie. spaces, quotes, carriage returns should be stripped out)
 
-###Parsing from the DOM
+__Unfortunately Merlin's potions does not have their own analytics, so we can not parse their analytics calls__
+
+### 3. Parsing from the DOM
 
 Totally not ideal but if it comes down to this, it will have to do. 
 
@@ -28,11 +32,11 @@ A couple of things that should be in consideration when parsing from the DOM:
 - Make sure there is no other characters aside from what is expected (ie. '20.00 USD' for Revenue, ' USD' should be stripped out)
 - Don't guess on what to send in transaction analytic and always match how the clients are sending theirs.
 
-Things to take note of:
+__In this example we'll be parsing from the DOM__
+
+## Things to take note of:
 - __transactionID__ should be unique from one order to another
 - __sku__ should be unique to each product
-
-__In this example we'll be parsing from the DOM__
 
 ##Task
 
