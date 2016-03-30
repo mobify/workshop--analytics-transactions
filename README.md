@@ -99,7 +99,7 @@ The Adaptive.js Generator has a view generator that sets up a new view for your 
 
 run `grunt preview`
 
-Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
+Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://training..merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
 
 <img src="/static/img/merlin-empty-page.png?raw=true"  height="400"/>
 
