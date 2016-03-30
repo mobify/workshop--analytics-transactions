@@ -179,7 +179,7 @@ Currently we have all of our content, but it is unstyled, let's style in quickly
 
 run `grunt preview`
 
-Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
+Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://training.merlinspotions.com/order-confirmation.html" click the "Preview" button. You should arrive on a preview page that looks like the following:
 
 <img src="https://raw.githubusercontent.com/mobify/workshop--analytics-transactions/step-2-populate-view/static/img/styled-confirmation-page.png?token=AKTX6ulyMJIYbXRH_WvVPFJ3-K3IhhgEks5W1ibnwA%3D%3D" height="400"/>
 
