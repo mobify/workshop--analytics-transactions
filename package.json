@@ -5,7 +5,7 @@
         "url": "http://github.com/mobify/merlins-potions-adaptive-2"
     },
     "private": true,
-    "siteUrl": "merlinspotions.com",
+    "siteUrl": "http://training.merlinspotions.com",
     "version": "0.0.1",
     "dependencies": {
         "adaptivejs": "~2.1.0",

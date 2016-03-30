@@ -33,6 +33,11 @@ We've done it! The data from this transaction is now successfully being sent to 
         }
     };
     ```  
+ ### Preview the page: 
+
+run `grunt preview -auto`
+
+Change site URL to "http://training.merlinspotions.com/order-confirmation.html" click the "Preview" button.
 
 ##View the completed project
 
