@@ -114,7 +114,7 @@ This will get all of the relevent data, we then need to format it correctly in o
 __Preview the page:__
 run `grunt preview`
 
-Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://www.merlinspotions.com/order-confirmation.html" click the "Preview" button. 
+Next, open up your browser and visit the following page: https://goo.gl/8YnP6J. Once there, change site URL to "http://training.merlinspotions.com/order-confirmation.html" click the "Preview" button. 
 
 Once there open up the developer tools to inspect the page and look inside of the object in the console.
 
