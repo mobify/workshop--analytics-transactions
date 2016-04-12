@@ -1,7 +1,7 @@
 #Adaptive.js Analytics Workshop
 The example site for this workshop is [Merlin's Potions](https://github.com/mobify/workshop--hijax/tree/master), a mock e-commerce site that peddles potions and spell books.
 
-In this workshop you'll learn how to send transaction data to google analytics.
+In this workshop you'll learn how to send transaction data to google analytics. More information on Mobify's Transaction utility can be found [here](https://github.com/mobify/transaction).
 
 We use Git to switch between the steps in the workshop. Look through some of [Git's documentation](https://github.com/mobify/workshop--hijax/tree/master) if you're not already familiar with Git. Also, we use Require.js in most of the JavaScript files in the project. Its documentation is found [here](http://requirejs.org/docs/start.html).
 
